@@ -10,9 +10,10 @@
 <body style="background-image: url('{{ asset('assets/img/bg1.png') }}');">
     <div class="container d-flex justify-content-center">
         <div class="profile-container">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('images/foto_profil.jpeg') }}" alt="Gambar Profil">
-            </div>
+        <div class="d-flex justify-content-center">
+        <img src="{{ asset($user->foto) }}" alt="Gambar Profil" style="width: 150px; height: 150px;">
+</div>
+
             <h2 class="card-title">Profil</h2>
             <table class="table table-borderless mt-4 text-center">
                 <tr>
@@ -25,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>Kelas</td>
-                    <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</td>
+                    <td>{{ $user->kelas ? $user->kelas->nama_kelas : 'Kelas tidak ditemukan' }}</td>
                 </tr>
             </table>
         </div>
