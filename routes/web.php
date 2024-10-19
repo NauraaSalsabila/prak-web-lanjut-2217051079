@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\UserController;
+use App\Models\Kelas;
 
 Route::get('/user/profile', [UserController::class,
 'profile']);
@@ -27,3 +28,5 @@ Route::get('/user/create', [UserController::class,
 
 Route::post('/user/store', [UserController::class,
 'store'])->name('user.store');
+
+Route::get('/create_user', [UserController::class, 'create']);

@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <td>Kelas</td>
-                    <td>{{ $kelas }}</td> 
+                    <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</td>
                 </tr>
             </table>
         </div>
