@@ -74,7 +74,7 @@ form button:hover {
 
 .image-wrapper {
     position: absolute;
-    top: 70px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -88,7 +88,7 @@ form button:hover {
 }
 
 .image-wrapper.has-error {
-    top: 50px; 
+    top: -10px; 
 }
 
 .profile-container {
@@ -167,6 +167,7 @@ table {
     border-collapse: collapse;
     max-width: 3000px; 
     margin-top: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
     outline: 2px solid #ff6f61; 
     border-radius: 8px; 
@@ -215,7 +216,7 @@ td {
 }
 
 .btn-edit {
-    background-color: #2852a7;
+    background-color: #4369b5;
 }
 
 .btn-delete {
@@ -225,3 +226,26 @@ td {
 .btn:hover {
     opacity: 0.8;
 }
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.custom-btn {
+    letter-spacing: 2px;
+    font-size: 25px; 
+    font-weight: bold; 
+    color: #ff6f61; 
+    background-color: white; 
+    padding: 5px 20px; 
+    border-radius: 5px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease; 
+}
+
+.custom-btn:hover {
+    opacity: 0.8;
+}
+

@@ -5,7 +5,10 @@
 
 <div class="container">
     <h2 class="text-center">Daftar Pengguna</h2>
-    <table>
+    
+    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3 custom-btn">Tambah Pengguna Baru</a>
+
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>

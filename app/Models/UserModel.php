@@ -9,6 +9,13 @@ class UserModel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nama',
+        'npm',
+        'kelas_id',
+        'foto',
+    ];
+
     protected $table = 'user';
     protected $guarded = ['id'];
 
