@@ -28,7 +28,7 @@
                 <td>{{ $user['nama_kelas'] }}</td>
                 <td>
                     @if ($user['foto']) 
-                        <img src="{{ asset($user['foto']) }}" alt="Foto Profil" style="width: auto; height: 100px; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
+                        <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Foto Profil" style="width: auto; height: 100px; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
                     @else
                         <span>Tidak ada foto</span>
                     @endif

@@ -11,7 +11,7 @@
     <div class="container d-flex justify-content-center">
         <div class="profile-container">
         <div class="d-flex justify-content-center">
-        <img src="{{ asset($user->foto) }}" alt="Gambar Profil" style="width: 150px; height: 150px;">
+        <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Gambar Profil" style="width: 150px; height: 150px;">
 </div>
 
             <h2 class="card-title">Profil</h2>

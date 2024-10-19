@@ -32,9 +32,10 @@
             @endforeach
 
             <div class="form-group">
-            <label for="foto" style="margin-top: 20px;">Foto</label>                <input type="file" name="foto" class="form-control">
+            <label for="foto" style="margin-top: 20px;">Foto</label>                
+            <input type="file" name="foto" class="form-control">
                 @if($user->foto)
-                    <img src="{{ asset($user->foto) }}" alt="User Photo" width="100" class="mt-2">
+                  <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="User Photo" width="100" class="mt-2">
                 @endif
             </div><br>
 

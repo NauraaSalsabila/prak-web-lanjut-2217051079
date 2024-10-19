@@ -56,46 +56,56 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $fotoPath = $foto->move('upload/img', $foto->getClientOriginalName());
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $filename);
         } else {
-            $fotoPath = null;
+            $filename = null;
         }
 
         $this->userModel->create([
             'nama' => $request->input('nama'),
             'npm' => $request->input('npm'),
             'kelas_id' => $request->input('kelas_id'),
-            'foto' => $fotoPath,
+            'foto' => $filename,
         ]);
 
-        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
+        return redirect()->to('/')->with('success', 'User Berhasil dibuat');
     }
 
     public function edit($id)
     {
-        $user = UserModel::findOrFail($id); 
-        $kelasModel = new Kelas();          
-        $kelas = $kelasModel->getKelas();   
-        $title = 'Edit User';               
+        $user = UserModel::findOrFail($id);
+        $kelasModel = new Kelas();
+        $kelas = $kelasModel->getKelas();
+        $title = 'Edit User';
         return view('edit_user', compact('user', 'kelas', 'title'));
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $user = UserModel::findOrFail($id);
         
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'npm' => 'required|string|max:255',
+            'kelas_id' => 'required|integer',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $user->nama = $request->nama;
         $user->npm = $request->npm;
         $user->kelas_id = $request->kelas_id;
 
         if ($request->hasFile('foto')) {
             if ($user->foto) {
-                @unlink(public_path('upload/img/' . $user->foto)); 
+                @unlink(storage_path('app/public/uploads/' . $user->foto));
             }
-            $fileName = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('upload/img'), $fileName);
-            $user->foto = 'upload/img/' . $fileName; 
+
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $filename);
+            $user->foto = $filename;
         }
 
         $user->save();
