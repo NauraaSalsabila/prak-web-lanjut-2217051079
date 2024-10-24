@@ -13,8 +13,10 @@
             <tr>
                 <th>ID</th>
                 <th>Nama</th>
-                <th>NPM</th>
                 <th>Kelas</th>
+                <th>Semester</th>
+                <th>Fakultas</th> 
+                <th>Jurusan</th>
                 <th>Foto</th> 
                 <th>Aksi</th>
             </tr>
@@ -24,8 +26,10 @@
             <tr>
                 <td>{{ $user['id'] }}</td>
                 <td>{{ $user['nama'] }}</td>
-                <td>{{ $user['npm'] }}</td>
+                <td>{{ $user['semester'] }}</td>
                 <td>{{ $user['nama_kelas'] }}</td>
+                <td>{{ $user->fakultas->nama_fakultas ?? 'Tidak ada' }}</td> <!-- Menampilkan nama fakultas -->
+                <td>{{ $user['jurusan'] }}</td>
                 <td>
                     @if ($user['foto']) 
                         <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Foto Profil" style="width: auto; height: 100px; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
@@ -42,6 +46,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn action-btn mx-1" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">Delete</button>
                         </form>
+                    </div>
                 </td>
             </tr>
         @endforeach

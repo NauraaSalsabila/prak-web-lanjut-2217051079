@@ -13,12 +13,6 @@
                 <p class="text-danger">{{ $msg }}</p>
             @endforeach
 
-            <label for="npm">NPM:</label>
-            <input type="text" id="npm" name="npm" value="{{ old('npm', $user->npm ?? '') }}">
-            @foreach($errors->get('npm') as $msg)
-                <p class="text-danger">{{ $msg }}</p>
-            @endforeach
-
             <label for="kelas_id">Kelas:</label>
             <select name="kelas_id" id="kelas_id" required>
                 @foreach ($kelas as $kelasItem)
@@ -31,11 +25,41 @@
                 <p class="text-danger">{{ $msg }}</p>
             @endforeach
 
+            <label for="semester">Semester:</label>
+            <input type="number" id="semester" name="semester" value="{{ old('semester', $user->semester ?? '') }}" min="1" max="14">
+            @foreach($errors->get('semester') as $msg)
+                <p class="text-danger">{{ $msg }}</p>
+            @endforeach
+
+            <label for="jurusan">Jurusan:</label>
+            <select name="jurusan" id="jurusan" required>
+                <option value="fisika" {{ (old('jurusan', $user->jurusan ?? '') == 'fisika') ? 'selected' : '' }}>Fisika</option>
+                <option value="kimia" {{ (old('jurusan', $user->jurusan ?? '') == 'kimia') ? 'selected' : '' }}>Kimia</option>
+                <option value="biologi" {{ (old('jurusan', $user->jurusan ?? '') == 'biologi') ? 'selected' : '' }}>Biologi</option>
+                <option value="matematika" {{ (old('jurusan', $user->jurusan ?? '') == 'matematika') ? 'selected' : '' }}>Matematika</option>
+                <option value="ilmu komputer" {{ (old('jurusan', $user->jurusan ?? '') == 'ilmu komputer') ? 'selected' : '' }}>Ilmu Komputer</option>
+            </select>
+            @foreach($errors->get('jurusan') as $msg)
+                <p class="text-danger">{{ $msg }}</p>
+            @endforeach
+
+            <label for="fakultas_id">Fakultas:</label>
+            <select name="fakultas_id" id="fakultas_id" required>
+                @foreach ($fakultas as $f)
+                    <option value="{{ $f->id }}" {{ (old('fakultas_id', $user->fakultas_id ?? '') == $f->id) ? 'selected' : '' }}>
+                        {{ $f->nama_fakultas }}
+                    </option>
+                @endforeach
+            </select>
+            @foreach($errors->get('fakultas_id') as $msg)
+                <p class="text-danger">{{ $msg }}</p>
+            @endforeach
+
             <div class="form-group">
-            <label for="foto" style="margin-top: 20px;">Foto</label>                
-            <input type="file" name="foto" class="form-control">
+                <label for="foto" style="margin-top: 20px;">Foto</label>                
+                <input type="file" name="foto" class="form-control">
                 @if($user->foto)
-                  <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="User Photo" width="100" class="mt-2">
+                    <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="User Photo" width="100" class="mt-2">
                 @endif
             </div><br>
 
