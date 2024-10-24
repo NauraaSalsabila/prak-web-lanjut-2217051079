@@ -10,23 +10,31 @@
 <body style="background-image: url('{{ asset('assets/img/bg1.png') }}');">
     <div class="container d-flex justify-content-center">
         <div class="profile-container">
-        <div class="d-flex justify-content-center">
-        <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Gambar Profil" style="width: 150px; height: 150px;">
-</div>
+            <div class="d-flex justify-content-center">
+                <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Gambar Profil" style="width: 150px; height: 150px;">
+            </div>
 
             <h2 class="card-title">Profil</h2>
             <table class="table table-borderless mt-4 text-center">
                 <tr>
                     <td>Nama</td>
-                    <td>{{ $nama }}</td> 
+                    <td>{{ $user->nama }}</td> 
                 </tr>
                 <tr>
-                    <td>NPM</td>
-                    <td>{{ $npm }}</td> 
+                    <td>Semester</td>
+                    <td>{{ $user->semester }}</td> 
+                </tr>
+                <tr>
+                    <td>Jurusan</td>
+                    <td>{{ ucfirst($user->jurusan) }}</td> 
+                </tr>
+                <tr>
+                    <td>Fakultas</td>
+                    <td>{{ $user->fakultas ? $user->fakultas->nama_fakultas : 'Fakultas tidak ditemukan' }}</td> 
                 </tr>
                 <tr>
                     <td>Kelas</td>
-                    <td>{{ $user->kelas ? $user->kelas->nama_kelas : 'Kelas tidak ditemukan' }}</td>
+                    <td>{{ $user->kelas ? $user->kelas->nama_kelas : 'Kelas tidak ditemukan' }}</td> <!-- Kelas tetap -->
                 </tr>
             </table>
         </div>
